@@ -20,7 +20,7 @@ Run weatherMap.py to generate a current weather report, save output image, and w
 Display is put to sleep (zero power consumption) at the end of script. 
 
 #### Output
-Output is an 800x480 pixel black/white image that can be written to the e-Ink display.
+Output is an 800x480 pixel black/white image that is written to the e-Ink display.
 
 Example below:
 

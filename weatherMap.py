@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import requests
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 import os
+import sys
 import traceback
 import logging
 

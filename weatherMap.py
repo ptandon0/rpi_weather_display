@@ -4,8 +4,19 @@ from datetime import datetime, timedelta
 import requests
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 import os
+import traceback
+import logging
+
+libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
+from waveshare_epd import epd7in5_V2
+
+logging.basicConfig(level=logging.DEBUG)
 
 #read configuration
+logging.info("Fetching Weather")
 conf = configparser.ConfigParser()
 conf.read("config.ini")
 lat = conf['WEATHER']['lat']
@@ -18,6 +29,8 @@ forecast_api_request= f"https://api.openweathermap.org/data/2.5/forecast?lat={la
 
 weather = json.loads(requests.get(weather_api_request).content)
 forecast = json.loads(requests.get(forecast_api_request).content)
+
+logging.info("Preparing Image")
 
 #extract current weather data
 main = weather["main"]
@@ -105,3 +118,5 @@ draw_image.text((width-175, height/4+90),"Next 12h:",anchor='lm', font=font18)
 
 #show the output
 pic_img.save("output.png")
+logging.info("Saved Image")
+

@@ -52,12 +52,15 @@ welcome_text = "Good "+ time_dict[now.hour] + "!"
 
 #extract forecast data
 forecast_list = forecast["list"]
-t1 = str(round(forecast_list[0]['main']['temp'],0))
+t1 = str(int(forecast_list[0]['main']['temp']))
 i1 = forecast_list[0]['weather'][0]['icon']
-t2 = str(round(forecast_list[1]['main']['temp'],0))
+p1 = str(int(forecast_list[0]['pop']*100))+'%'
+t2 = str(int(forecast_list[1]['main']['temp']))
 i2 = forecast_list[1]['weather'][0]['icon']
-t3 = str(round(forecast_list[2]['main']['temp'],0))
+p2 = str(int(forecast_list[1]['pop']*100))+'%'
+t3 = str(int(forecast_list[2]['main']['temp']))
 i3 = forecast_list[2]['weather'][0]['icon']
+p3 = str(int(forecast_list[3]['pop']*100))+'%'
 
 #set up fonts
 font12 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 12)
@@ -87,9 +90,9 @@ p_w, p_h = pil_img.size
 #open blank canvas and paste weather icon images
 blank_img = Image.new('1', (width,height), 255)
 blank_img.paste(pil_img, box=(int((width-p_w)/2), int((height)/2 )))
-blank_img.paste(i1_img, box =(width-200,int(height/4+100)))
-blank_img.paste(i2_img, box =(width-200,int(height/4+175)))
-blank_img.paste(i3_img, box =(width-200,int(height/4+250)))
+blank_img.paste(i1_img, box =(width-220,int(height/4+110)))
+blank_img.paste(i2_img, box =(width-220,int(height/4+185)))
+blank_img.paste(i3_img, box =(width-220,int(height/4+270)))
 pic_img = blank_img.copy()
 
 #write text onto output image
@@ -112,10 +115,17 @@ draw_image.text((width-140, height/4+24),tmin+degree_sign,anchor='ls', font=font
 draw_image.text((width-200, height/4+48),"Hum: ",anchor='ls', font=font24)
 draw_image.text((width-140, height/4+48), humidity,anchor='ls', font=font24)
 
-draw_image.text((width-125, height/4+135),t1+degree_sign,anchor='lm', font=font24)
-draw_image.text((width-125, height/4+205),t2+degree_sign,anchor='lm', font=font24)
-draw_image.text((width-125, height/4+285),t3+degree_sign,anchor='lm', font=font24)
-draw_image.text((width-175, height/4+90),"Next 12h:",anchor='lm', font=font18)
+draw_image.text((width-135, height/4+145),t1+degree_sign,anchor='lm', font=font24)
+draw_image.text((width-135, height/4+215),t2+degree_sign,anchor='lm', font=font24)
+draw_image.text((width-135, height/4+300),t3+degree_sign,anchor='lm', font=font24)
+draw_image.text((width-145, height/4+120),"Temp:",anchor='lm', font=font18)
+
+draw_image.text((width-20, height/4+145),p1,anchor='rm', font=font24)
+draw_image.text((width-20, height/4+215),p2,anchor='rm', font=font24)
+draw_image.text((width-20, height/4+300),p3,anchor='rm', font=font24)
+draw_image.text((width-20, height/4+120),"Precip:",anchor='rm', font=font18)
+
+draw_image.text((width-110, height/4+90),"12h:",anchor='lm', font=font24)
 
 #show the output
 pic_img.save("output.png")

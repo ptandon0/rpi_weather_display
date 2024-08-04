@@ -121,3 +121,14 @@ draw_image.text((width-175, height/4+90),"Next 12h:",anchor='lm', font=font18)
 pic_img.save("output.png")
 logging.info("Saved Image")
 
+#write to e-ink display
+logging.info("Begin Write to Screen")
+epd = epd7in5_V2.EPD()    
+epd.init()
+epd.Clear()
+epd.display(epd.getbuffer(pic_img))
+logging.info("Finished Writing to Screen")
+
+logging.info("Putting Display to Sleep")
+epd.sleep()
+

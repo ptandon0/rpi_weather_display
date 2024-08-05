@@ -66,6 +66,7 @@ p3 = str(int(forecast_list[3]['pop']*100))+'%'
 font12 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 12)
 font18 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 18)
 font24 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 24)
+font36 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 36)
 font48 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 48)
 font96 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 96)
 font120 = ImageFont.truetype('./fonts/Arial Unicode.ttf', 120)
@@ -90,9 +91,9 @@ p_w, p_h = pil_img.size
 #open blank canvas and paste weather icon images
 blank_img = Image.new('1', (width,height), 255)
 blank_img.paste(pil_img, box=(int((width-p_w)/2), int((height)/2 )))
-blank_img.paste(i1_img, box =(width-220,int(height/4+110)))
-blank_img.paste(i2_img, box =(width-220,int(height/4+185)))
-blank_img.paste(i3_img, box =(width-220,int(height/4+270)))
+blank_img.paste(i1_img, box =(width-260,int(height/4+110)))
+blank_img.paste(i2_img, box =(width-260,int(height/4+185)))
+blank_img.paste(i3_img, box =(width-260,int(height/4+270)))
 pic_img = blank_img.copy()
 
 #write text onto output image
@@ -106,26 +107,26 @@ draw_image.text((width/4-100, height/2+ 75), date,anchor='mm',font=font96)
 draw_image.text((width/4-100, height/2+ 150), month,anchor='mm',font=font48)
 draw_image.text((10, height-40),"Last Updated",anchor='ls', font=font12)
 draw_image.text((10, height-10),loc + dt,anchor='ls', font=font24)
-draw_image.text((width-200, height/4),"High: ",anchor='ls', font=font24)
-draw_image.text((width-140, height/4),tmax+degree_sign,anchor='ls', font=font24)
+draw_image.text((width-200, height/4-24),"High: ",anchor='ls', font=font36)
+draw_image.text((width-100, height/4-24),tmax+degree_sign,anchor='ls', font=font36)
 
-draw_image.text((width-200, height/4+24),"Low: ",anchor='ls', font=font24)
-draw_image.text((width-140, height/4+24),tmin+degree_sign,anchor='ls', font=font24)
+draw_image.text((width-200, height/4+36-24),"Low: ",anchor='ls', font=font36)
+draw_image.text((width-100, height/4+36-24),tmin+degree_sign,anchor='ls', font=font36)
 
-draw_image.text((width-200, height/4+48),"Hum: ",anchor='ls', font=font24)
-draw_image.text((width-140, height/4+48), humidity,anchor='ls', font=font24)
+draw_image.text((width-200, height/4+72-24),"Hum: ",anchor='ls', font=font36)
+draw_image.text((width-100, height/4+72-24), humidity,anchor='ls', font=font36)
 
-draw_image.text((width-135, height/4+145),t1+degree_sign,anchor='lm', font=font24)
-draw_image.text((width-135, height/4+215),t2+degree_sign,anchor='lm', font=font24)
-draw_image.text((width-135, height/4+300),t3+degree_sign,anchor='lm', font=font24)
-draw_image.text((width-145, height/4+120),"Temp:",anchor='lm', font=font18)
+draw_image.text((width-180, height/4+145),t1+degree_sign,anchor='lm', font=font36)
+draw_image.text((width-180, height/4+215),t2+degree_sign,anchor='lm', font=font36)
+draw_image.text((width-180, height/4+300),t3+degree_sign,anchor='lm', font=font36)
+draw_image.text((width-180, height/4+120),"Temp:",anchor='lm', font=font18)
 
-draw_image.text((width-20, height/4+145),p1,anchor='rm', font=font24)
-draw_image.text((width-20, height/4+215),p2,anchor='rm', font=font24)
-draw_image.text((width-20, height/4+300),p3,anchor='rm', font=font24)
+draw_image.text((width-20, height/4+145),p1,anchor='rm', font=font36)
+draw_image.text((width-20, height/4+215),p2,anchor='rm', font=font36)
+draw_image.text((width-20, height/4+300),p3,anchor='rm', font=font36)
 draw_image.text((width-20, height/4+120),"Precip:",anchor='rm', font=font18)
 
-draw_image.text((width-110, height/4+90),"12h:",anchor='lm', font=font24)
+draw_image.text((width-120, height/4+90),"12h:",anchor='lm', font=font36)
 
 #show the output
 pic_img.save("output.png")
